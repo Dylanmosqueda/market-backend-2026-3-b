@@ -16,7 +16,7 @@ logs/
 application-local.yml
 application-local.properties
 *.properties
-
+*
 ### STS ###
 .apt_generated
 .classpath
