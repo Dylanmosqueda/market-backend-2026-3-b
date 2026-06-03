@@ -10,9 +10,6 @@ public class CompraProducto {
 
    @ManyToOne
    @JoinColumn(name = "id_compra", insertable = false, updatable = false)
-   private Compra compra;
-
-
    private Integer cantidad;
    private Double total;
    private Boolean estado;
