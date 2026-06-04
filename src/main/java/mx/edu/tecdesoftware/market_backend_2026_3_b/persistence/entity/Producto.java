@@ -25,6 +25,7 @@ public class Producto {
 
     private Boolean estado;
 
+
     //Relacion con categoria
     //Muchos productos puede pertenecer a una
 
