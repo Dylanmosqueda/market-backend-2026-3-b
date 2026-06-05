@@ -22,7 +22,6 @@ public class ProductoRepository {
     public Optional<List<Producto>> getEscaso(int cantidad){
         return productoCrudRepository.findByCantidadStockLessThanAndEstado(cantidad,true);
     }
-
     public Optional<Producto> getProductoById(int idProducto) {
         return productoCrudRepository.findById(idProducto);
     }
