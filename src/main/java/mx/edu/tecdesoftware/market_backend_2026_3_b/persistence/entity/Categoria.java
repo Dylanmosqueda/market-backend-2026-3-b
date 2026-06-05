@@ -17,7 +17,6 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria")
     private List<Producto> productos;
 
-
     public Boolean getEstado() {
         return estado;
     }

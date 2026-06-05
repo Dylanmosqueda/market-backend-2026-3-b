@@ -18,7 +18,6 @@ public class CompraProducto {
       return id;
    }
 
-
    public void setId(CompraProductoPK id) {
       this.id = id;
    }

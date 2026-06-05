@@ -3,7 +3,6 @@ package mx.edu.tecdesoftware.market_backend_2026_3_b.persistence.entity;
 import jakarta.persistence.*;
 
 import java.util.List;
-
 @Entity
 @Table (name = "clientes")
 public class Cliente {

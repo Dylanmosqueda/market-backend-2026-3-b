@@ -6,7 +6,6 @@ import mx.edu.tecdesoftware.market_backend_2026_3_b.persistence.entity.Producto;
 
 import java.util.List;
 import java.util.Optional;
-
 public class ProductoRepository {
     private ProductoCrudRepository productoCrudRepository;
 
