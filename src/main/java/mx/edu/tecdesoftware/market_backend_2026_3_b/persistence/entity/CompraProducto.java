@@ -17,7 +17,6 @@ public class CompraProducto {
    public CompraProductoPK getId() {
       return id;
    }
-
    public void setId(CompraProductoPK id) {
       this.id = id;
    }
