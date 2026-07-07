@@ -36,21 +36,7 @@ public class ProductService {
         }
         return false;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public Optional<List<Product>> getByCategory(int categoryId) {
+        return productRepository.getByCategory(categoryId);
+    }
 }
