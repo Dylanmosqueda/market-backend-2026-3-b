@@ -2,7 +2,6 @@ package mx.edu.tecdesoftware.market_backend_2026_3_b.persistence.web.controller;
 
 import mx.edu.tecdesoftware.market_backend_2026_3_b.domain.Product;
 import mx.edu.tecdesoftware.market_backend_2026_3_b.domain.repository.ProductRepository;
-import mx.edu.tecdesoftware.market_backend_2026_3_b.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
