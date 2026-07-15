@@ -1,4 +1,4 @@
-package mx.edu.tecdesoftware.market_backend_2026_3_b.web.controller;
+package mx.edu.tecdesoftware.market_backend_2026_3_b.controller;
 
 import mx.edu.tecdesoftware.market_backend_2026_3_b.domain.Purchase;
 import mx.edu.tecdesoftware.market_backend_2026_3_b.domain.service.PurchaseService;
@@ -21,12 +21,12 @@ public class PurchaseController {
         this.purchaseService = purchaseService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/todos")
     public ResponseEntity<List<Purchase>> getAll() {
         return new ResponseEntity<>(purchaseService.getAll(), HttpStatus.OK); // Código HTTP 200 OK
     }
 
-    @GetMapping("/client/{id}")
+    @GetMapping("/cliente/{id}")
     public ResponseEntity<List<Purchase>> getByClient(@PathVariable("id") String clientId) {
         return purchaseService.getByClient(clientId)
                 .map(purchases -> new ResponseEntity<>(purchases, HttpStatus.OK)) // Código HTTP 200 OK
@@ -37,4 +37,6 @@ public class PurchaseController {
     public ResponseEntity<Purchase> save(@RequestBody Purchase purchase) {
         return new ResponseEntity<>(purchaseService.save(purchase), HttpStatus.CREATED); // Código HTTP 201 CREATED
     }
+
+    
 }

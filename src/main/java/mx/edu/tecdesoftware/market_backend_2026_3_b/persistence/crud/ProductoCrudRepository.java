@@ -1,11 +1,14 @@
 package mx.edu.tecdesoftware.market_backend_2026_3_b.persistence.crud;
 
-import mx.edu.tecdesoftware.market_backend_2026_3_b.persistence.entity.Compra;
+import mx.edu.tecdesoftware.market_backend_2026_3_b.persistence.entity.Producto;
 import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface CompraCrudRepository extends CrudRepository<Compra, Integer> {
-    // Definición del Query Method para buscar por idCliente
-    Optional<List<Compra>> findByIdCliente(String idCliente);
+public interface ProductoCrudRepository extends CrudRepository<Producto, Integer> {
+
+
+    List<Producto> findByIdCategoriaOrderByNombreAsc(int idCategoria);
+
+    Optional<List<Producto>> findByCantidadStockLessThanAndEstado(int cantidadStock, boolean estado);
 }

@@ -29,18 +29,16 @@ public class ProductoRepository implements ProductRepository {
     }
 
     // Obtener productos por categoria
-
     public Optional<List<Product>> getByCategory(int categoryId){
-        List<Producto> productos
-                = productoCrudRepository.findByCantidadOrderByNombreAsc(categoryId);
+        List<Producto> productos = productoCrudRepository.findByIdCategoriaOrderByNombreAsc(categoryId);
         return Optional.of(productMapper.toProducts(productos));
     }
 
-    // Obtener productos escasos
+    // Obtener productos escasos (Optimizado de forma segura usando .map)
     public Optional<List<Product>> getScarceProducts(int quantity){
         Optional<List<Producto>> productos =
                 productoCrudRepository.findByCantidadStockLessThanAndEstado(quantity, true);
-        return Optional.of(productMapper.toProducts(productos.get()));
+        return productos.map(prods -> productMapper.toProducts(prods));
     }
 
     // Obtener un producto dado el ID
@@ -49,11 +47,33 @@ public class ProductoRepository implements ProductRepository {
                 .map(producto -> productMapper.toProduct(producto));
     }
 
-    //Guardar un producto
+    // Guardar un producto
+    // Guardar un producto
+    @Override
     public Product save(Product product){
         Producto producto = productMapper.toProducto(product);
-        return productMapper.toProduct(productoCrudRepository.save(producto));
+
+        // 1. Guardamos temporalmente en memoria la categoría que enviaste en tu JSON
+        mx.edu.tecdesoftware.market_backend_2026_3_b.domain.Category tempCategory = product.getCategory();
+
+        // 2. Limpiamos la relación de la entidad para evitar el error 500 de Hibernate
+        producto.setCategoria(null);
+        producto.setIdProducto(null); // Dejamos que PostgreSQL autogenere el ID de forma consecutiva
+
+        // 3. Guardamos el producto en la base de datos
+        Producto savedProducto = productoCrudRepository.save(producto);
+
+        // 4. Mapeamos el producto guardado de regreso a nuestro objeto de dominio
+        Product savedProduct = productMapper.toProduct(savedProducto);
+
+        // 5. Le volvemos a inyectar la categoría que guardamos en memoria para que la respuesta esté completa
+        if (tempCategory != null) {
+            savedProduct.setCategory(tempCategory);
+        }
+
+        return savedProduct;
     }
+
     // Eliminar un producto por ID
     public void delete(int productId){
         productoCrudRepository.deleteById(productId);

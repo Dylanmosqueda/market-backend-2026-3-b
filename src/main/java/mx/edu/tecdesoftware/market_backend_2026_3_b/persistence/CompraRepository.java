@@ -35,13 +35,9 @@ public class CompraRepository implements PurchaseRepository {
     @Override
     public Purchase save(Purchase purchase) {
         Compra compra = mapper.toCompra(purchase);
-
-        // CRÍTICO: Asignación de la relación de la compra principal a cada producto.
-        // Esto permite que cascade = CascadeType.ALL actúe correctamente al insertar.
         if (compra.getProductos() != null) {
             compra.getProductos().forEach(producto -> producto.setCompra(compra));
         }
-
         Compra savedCompra = compraCrudRepository.save(compra);
         return mapper.toPurchase(savedCompra);
     }

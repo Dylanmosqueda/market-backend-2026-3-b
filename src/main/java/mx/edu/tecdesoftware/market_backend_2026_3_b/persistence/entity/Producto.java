@@ -3,15 +3,18 @@ package mx.edu.tecdesoftware.market_backend_2026_3_b.persistence.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table (name = "producto")
+@Table(name = "productos")
 public class Producto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
     private Integer idProducto;
+
     private String nombre;
+
     @Column(name = "id_categoria")
-    private String idCategoria;
+    private Integer idCategoria;
 
     @Column(name = "codigo_barras")
     private String codigoBarras;
@@ -24,67 +27,48 @@ public class Producto {
 
     private Boolean estado;
 
-
-    //Relacion con categoria
-    //Muchos productos puede pertenecer a una
-
+    // ESTA ES LA RELACIÓN QUE FALTA DECLARAR EN TU ENTIDAD
     @ManyToOne
     @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
     private Categoria categoria;
-    
-    public Integer getIdProducto() {
-        return idProducto;
+
+    // Asegúrate de agregar estos Getters y Setters de la relación "categoria"
+    public Categoria getCategoria() {
+        return categoria;
     }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    // (Conserva también tus otros campos y getters/setters ya existentes)
+    public Integer getIdProducto() {
+        return idProducto; }
 
     public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
-    }
-
+        this.idProducto = idProducto; }
     public String getNombre() {
-        return nombre;
-    }
-
+        return nombre; }
     public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(String idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
+        this.nombre = nombre; }
+    public Integer getIdCategoria() {
+        return idCategoria; }
+    public void setIdCategoria(Integer idCategoria) {
+        this.idCategoria = idCategoria; }
     public String getCodigoBarras() {
-        return codigoBarras;
-    }
-
+        return codigoBarras; }
     public void setCodigoBarras(String codigoBarras) {
-        this.codigoBarras = codigoBarras;
-    }
-
+        this.codigoBarras = codigoBarras; }
     public Double getPrecioVenta() {
-        return precioVenta;
-    }
-
+        return precioVenta; }
     public void setPrecioVenta(Double precioVenta) {
-        this.precioVenta = precioVenta;
-    }
-
+        this.precioVenta = precioVenta; }
     public Integer getCantidadStock() {
-        return cantidadStock;
-    }
-
+        return cantidadStock; }
     public void setCantidadStock(Integer cantidadStock) {
-        this.cantidadStock = cantidadStock;
-    }
-
+        this.cantidadStock = cantidadStock; }
     public Boolean getEstado() {
-        return estado;
-    }
-
+        return estado; }
     public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
+        this.estado = estado; }
 }
